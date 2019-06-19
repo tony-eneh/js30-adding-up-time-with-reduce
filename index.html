@@ -84,6 +84,13 @@
         let mins = parseInt((totalTime % 360) / 60);
         let secs = totalTime % 60;
 
+        //double digit formatting
+
+        function format(...timeses) {
+            return timeses.map((t) => t.toString().length < 2 ? `0${t}` : `${t}`)
+        }
+        [hours, mins, secs] = format(hours, mins, secs);
+
         //display total time
         totalSlot.innerHTML = `${hours}:${mins}:${secs}`;
     </script>
