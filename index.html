@@ -69,6 +69,24 @@
         <li class="video" data-time="3:21">Video 11 <span>3:21</span></li>
         <li class=" video total" data-time="">Total time <span></span></li>
     </ul>
+
+    <script>
+        let totalSlot = document.querySelector('.total span');
+
+        //get total time
+        let totalTime = Array.from(document.querySelectorAll('[data-time]:not(.total)'))
+            .map((video) => video.dataset.time)
+            .reduce((total, timeString) => {
+                let [min, sec] = timeString.split(':');
+                return parseFloat(min * 60 + sec)
+            }, 0);
+        let hours = parseInt(totalTime / 360);
+        let mins = parseInt((totalTime % 360) / 60);
+        let secs = totalTime % 60;
+
+        //display total time
+        totalSlot.innerHTML = `${hours}:${mins}:${secs}`;
+    </script>
 </body>
 
 </html>
